@@ -106,8 +106,8 @@ public class Array {
         return X;
     }
 
-    static String printArrayAlphabet(Array S1) {
-        int n=S1.size;
+    static String printArrayAlphabet(String [] S1) {
+        int n=S1.length;
         String X = "";
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         for (int i = 0; i < n; i++) {
@@ -116,11 +116,11 @@ public class Array {
         return X;
     }
 
-    static void swapArrayConstruct(Array Array1, Array Array2) throws InterruptedException {
+    static void swapArrayConstruct(String [] Array1, String [] Array2) throws InterruptedException {
         /* METOD TO REPAIR
             Notice the user of print as opposed to println:
             the '\b' char cannot go over the new line char.
-
+        */
         System.out.print("Start[          ]");
         System.out.flush(); // the flush method prints it to the screen
 
@@ -128,9 +128,9 @@ public class Array {
         System.out.print("\b\b\b\b\b\b\b\b\b\b\b");
         System.out.flush();
         Thread.sleep(500); // just to make it easy to see the changes
-        Array temp = new Array(Array1.size);
-        int j = Array1.size;
-        if (Array1.size == Array2.size) {
+        String [] temp = new String [Array1.length];
+        int j = Array1.length;
+        if (Array1.length == Array2.length) {
             for (int i = 0; i < j; i++) {
                 System.out.print("."); //overwrites a space
                 System.out.flush();
@@ -141,19 +141,19 @@ public class Array {
             }
             System.out.print("] Done\n"); //overwrites the ']' + adds chars
             System.out.flush();
-            System.out.println("First array:  \n " + printStringArray(Array1));
-            System.out.println("Second array:  \n " + printStringArray(Array2));
+            System.out.println("First array:  \n " + printArrayAlphabet(Array1));
+            System.out.println("Second array:  \n " + printArrayAlphabet(Array2));
         } else {
             temp[1] = "Error";
             System.out.println("---------------------  \n " + printStringArray(temp));
         }
     }
-*/
+
     static String[] swap(String[] Array)  {
         String[] temp = new String[Array.length];
         int j = Array.length;
         for (int i = 0; i < j; i++) {
-            temp[j-1] = Array[i];
+            temp[j] = Array[i];
             j--;
         }
         return temp;
@@ -233,27 +233,26 @@ public class Array {
         System.out.println("Second array:  \n " + printStringArray(ar4));
         swapArray(ar3, ar4);
         //another display method with constructor
-        //this doesn't work
-        /*
+        //this doesn't work as constructor
         System.out.println("---------------------------------\nMethod with constructor");
         System.out.println("First");
-        Array arC1 = new Array();
+        String [] arC1 = insertStringArray(l);
         System.out.println("Second");
-        Array arC2 = new Array();
+        String [] arC2 = insertStringArray(l);
         System.out.println("First array:  \n " + printArrayAlphabet(arC1));
         System.out.println("Second array:  \n " + printArrayAlphabet(arC2));
         System.out.println("Swaping...\n Let's make some magic.\n");
         swapArrayConstruct(arC1, arC2);
-        */
+
         //lost method swaping values in Array
         System.out.println("---------------------------------\nSwap in Array");
-        for (int i = 0; i < 2; i++) {
-            System.out.println("Your values " + ar3[i]);
-        }
-        String [] swaped;
-        swaped = swap(ar3);
-        for (int i = 0; i < 2; i++) {
-            System.out.println("Swaped values " + swaped[i]);
-        }
+        System.out.println("Add array lenght");
+        int k=scanner.nextInt();
+        System.out.println("Add array's elements");
+        String [] ar6 = insertStringArray(k);
+        System.out.println("Your values "+ printArrayAlphabet(ar6));
+        String [] swaped = swap(ar6);
+        System.out.println("Swaped values ");
+        System.out.println(printArrayAlphabet(swaped));
     }
 }
