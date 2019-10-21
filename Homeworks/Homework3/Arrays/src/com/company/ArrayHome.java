@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Array {
+public class ArrayHome {
     public static String [] Array;
     public static int size;
 
-    public Array (){
+    public ArrayHome(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Add array lenght");
         int n = scanner.nextInt();
@@ -20,9 +20,6 @@ public class Array {
             System.out.println("Added " + k + " element " + Str[k]);
         }
         Array = Str;
-        size = n;
-    }
-    public Array (int n){
         size = n;
     }
 
@@ -116,7 +113,16 @@ public class Array {
         return X;
     }
 
-    static void swapArrayConstruct(String [] Array1, String [] Array2) throws InterruptedException {
+    public static String printArrayAlphabetConstruct(ArrayHome S1) {
+        int n=S1.size;
+        String X = "";
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        for (int i = 0; i < n; i++) {
+            X += alphabet[i] + "=" + S1.Array[i] + " ";
+        }
+        return X;
+    }
+    public static void swapArrayConstruct(ArrayHome Array2, ArrayHome Array1) throws InterruptedException {
         /* METOD TO REPAIR
             Notice the user of print as opposed to println:
             the '\b' char cannot go over the new line char.
@@ -128,24 +134,24 @@ public class Array {
         System.out.print("\b\b\b\b\b\b\b\b\b\b\b");
         System.out.flush();
         Thread.sleep(500); // just to make it easy to see the changes
-        String [] temp = new String [Array1.length];
-        int j = Array1.length;
-        if (Array1.length == Array2.length) {
+        ArrayHome temp = Array2;
+        int j = Array1.size;
+        if (Array1.size == Array2.size) {
             for (int i = 0; i < j; i++) {
                 System.out.print("."); //overwrites a space
                 System.out.flush();
                 Thread.sleep(100);
-                temp[i] = Array1[i];
-                Array1[i] = Array2[i];
-                Array2[i] = temp[i];
+                temp.Array[i] = Array1.Array[i];
+                Array1.Array[i] = Array2.Array[i];
+                Array2.Array[i] = temp.Array[i];
             }
             System.out.print("] Done\n"); //overwrites the ']' + adds chars
             System.out.flush();
-            System.out.println("First array:  \n " + printArrayAlphabet(Array1));
-            System.out.println("Second array:  \n " + printArrayAlphabet(Array2));
+            System.out.println("First array:  \n " + printArrayAlphabetConstruct(Array1));
+            System.out.println("Second array:  \n " + printArrayAlphabetConstruct(Array2));
         } else {
-            temp[1] = "Error";
-            System.out.println("---------------------  \n " + printStringArray(temp));
+            temp.Array[1] = "Error";
+            System.out.println("---------------------  \n " + printArrayAlphabetConstruct(temp));
         }
     }
 
@@ -236,13 +242,14 @@ public class Array {
         //this doesn't work as constructor
         System.out.println("---------------------------------\nMethod with constructor");
         System.out.println("First");
-        String [] arC1 = insertStringArray(l);
+        ArrayHome arC11 = new ArrayHome();
         System.out.println("Second");
-        String [] arC2 = insertStringArray(l);
-        System.out.println("First array:  \n " + printArrayAlphabet(arC1));
-        System.out.println("Second array:  \n " + printArrayAlphabet(arC2));
+        ArrayHome arC12 = new ArrayHome();
+        System.out.println("First array:  \n " + printArrayAlphabetConstruct(arC11));
+        System.out.println("Second array:  \n " + printArrayAlphabetConstruct(arC12));
         System.out.println("Swaping...\n Let's make some magic.\n");
-        swapArrayConstruct(arC1, arC2);
+
+        swapArrayConstruct(arC11, arC12);
 
         //lost method swaping values in Array
         System.out.println("---------------------------------\nSwap in Array");
