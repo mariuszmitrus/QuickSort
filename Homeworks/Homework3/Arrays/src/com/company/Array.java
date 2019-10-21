@@ -120,7 +120,7 @@ public class Array {
         /* METOD TO REPAIR
             Notice the user of print as opposed to println:
             the '\b' char cannot go over the new line char.
-        
+
         System.out.print("Start[          ]");
         System.out.flush(); // the flush method prints it to the screen
 
