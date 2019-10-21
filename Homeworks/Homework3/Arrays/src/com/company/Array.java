@@ -6,22 +6,23 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Array {
-    static String [] Array;
-    static int size;
+    public static String [] Array;
+    public static int size;
 
-    Array (){
+    public Array (){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Add array lenght");
         int n = scanner.nextInt();
-        String [] S = new String [n];
-        for (int i = 0; i < n; i++) {
-            System.out.println("Add " + i + " element");
-            S[i] = scanner.nextLine();
+        String [] Str = new String [n];
+        for (int k = 0; k < n; k++) {
+            System.out.println("Add " + k + " element");
+            Str[k] = scanner.nextLine();//why S[0] element can't be added from keyboard?
+            System.out.println("Added " + k + " element " + Str[k]);
         }
-        Array = S;
+        Array = Str;
         size = n;
     }
-    Array (int n){
+    public Array (int n){
         size = n;
     }
 
@@ -105,21 +106,21 @@ public class Array {
         return X;
     }
 
-    static String [] printArrayAlphabet(Array S1) {
+    static String printArrayAlphabet(Array S1) {
         int n=S1.size;
-        String[] X = new String[n];
+        String X = "";
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-        Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < n; i++) {
-            X[i] = alphabet[i] + "=" + scanner.nextLine();
+            X += alphabet[i] + "=" + S1[i] + " ";
         }
         return X;
     }
+
     static void swapArrayConstruct(Array Array1, Array Array2) throws InterruptedException {
         /* METOD TO REPAIR
             Notice the user of print as opposed to println:
             the '\b' char cannot go over the new line char.
-        */
+        
         System.out.print("Start[          ]");
         System.out.flush(); // the flush method prints it to the screen
 
@@ -147,14 +148,13 @@ public class Array {
             System.out.println("---------------------  \n " + printStringArray(temp));
         }
     }
-
+*/
     static String[] swap(String[] Array)  {
         String[] temp = new String[Array.length];
         int j = Array.length;
-        for (int i = 0; i < 2; i++) {
-            temp[j - 1] = Array[i];
+        for (int i = 0; i < j; i++) {
+            temp[j-1] = Array[i];
             j--;
-            System.out.println("Your values " + Array[i]);
         }
         return temp;
     }
@@ -164,7 +164,7 @@ public class Array {
             Notice the user of print as opposed to println:
             the '\b' char cannot go over the new line char.
         */
-        System.out.print("Start[          ]");
+        System.out.print("Swaping...\n Let's make some magic.Start[          ]");
         System.out.flush(); // the flush method prints it to the screen
 
         // 11 '\b' chars: 1 for the ']', the rest are for the spaces
@@ -231,21 +231,29 @@ public class Array {
         String[] tempArray = new String[ar3.length];
         System.out.println("First array:  \n " + printStringArray(ar3));
         System.out.println("Second array:  \n " + printStringArray(ar4));
-        System.out.println("Swaping...\n Let's make some magic.\n");
         swapArray(ar3, ar4);
-        //another display method
-        /*Array arC1 = new Array();
+        //another display method with constructor
+        //this doesn't work
+        /*
+        System.out.println("---------------------------------\nMethod with constructor");
+        System.out.println("First");
+        Array arC1 = new Array();
+        System.out.println("Second");
         Array arC2 = new Array();
         System.out.println("First array:  \n " + printArrayAlphabet(arC1));
         System.out.println("Second array:  \n " + printArrayAlphabet(arC2));
         System.out.println("Swaping...\n Let's make some magic.\n");
-        swapArrayConstruct(arC1, arC2);*/
-        //lost method
-        System.out.println("---------------------------------\n");
+        swapArrayConstruct(arC1, arC2);
+        */
+        //lost method swaping values in Array
+        System.out.println("---------------------------------\nSwap in Array");
         for (int i = 0; i < 2; i++) {
             System.out.println("Your values " + ar3[i]);
         }
-        String swaped = "";
-        swaped += swap(ar3);
+        String [] swaped;
+        swaped = swap(ar3);
+        for (int i = 0; i < 2; i++) {
+            System.out.println("Swaped values " + swaped[i]);
+        }
     }
 }
