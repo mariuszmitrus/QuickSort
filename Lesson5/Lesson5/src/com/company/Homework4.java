@@ -37,7 +37,23 @@ public class Homework4 {
     return ret;
     }
 
-    public static void quickSort(int[] arr, int start, int end){
+    public static int [] secondDuplicateSearch(int [] arr)
+    {   int size = arr.length;
+        int count[] = new int[size];
+        int i;
+
+        System.out.println("Repeated elements are : ");
+        for (i = 0; i < size; i++)
+        {
+            if (count[arr[i]] == 1)
+                System.out.print(arr[i] + " ");
+            else
+                count[arr[i]]++;
+        }
+        return count;
+    }
+
+        public static void quickSort(int[] arr, int start, int end){
 
         int partition = partition(arr, start, end);
 
@@ -84,8 +100,8 @@ public class Homework4 {
     }
 
     // Generic function to check for duplicates in an array
-    private static <T> boolean checkForDuplicates(T... array)
-    {
+    private static <T> String checkForDuplicates(T... array){
+        String cfd="";
         // create an empty set
         Set<T> set = new HashSet<T>();
         // do for every element in the array
@@ -93,13 +109,13 @@ public class Homework4 {
         {
             // return true if duplicate is found
             if (set.contains(e))
-                return true;
+                cfd+=e + ", ";
             // insert current element into a set
             if (e != null)
                 set.add(e);
         }
         // no duplicate found
-        return false;
+        return cfd;
     }
 
     public static void main(String[] args) {
@@ -113,7 +129,7 @@ public class Homework4 {
         print(firstDupicate);
         System.out.println("Execution time in milliseconds: " + timeElapsed);
         //QuickSort
-        System.out.println("Quick sort 2 : ");
+        System.out.println("\n---------------------------------------\nQuick sort 2 : ");
         startTime = System.currentTimeMillis();
         quickSort(A,0,A.length-1);
         endTime = System.currentTimeMillis();
@@ -121,17 +137,26 @@ public class Homework4 {
         System.out.println(Arrays.toString(A));
         System.out.println("Execution time in milliseconds: " + timeElapsed);
         //method no.2
+        System.out.println("\n---------------------------------------\nFind duplicates 2 : ");
+        Homework4 duplicate1 = new Homework4();
+        startTime = System.currentTimeMillis();
+        int [] arr1 = A;
+        duplicate1.secondDuplicateSearch(arr1);
+        endTime = System.currentTimeMillis();
+        timeElapsed = endTime - startTime;
+        System.out.println("Execution time in milliseconds: " + timeElapsed);
+        //method no.3
+        System.out.println("\n---------------------------------------\nFind duplicates 3 : ");
         startTime = System.currentTimeMillis();
         Homework4 duplicate = new Homework4();
-        int [] arr = insert();
-        int arr_size = arr.length;
-        duplicate.printRepeating(arr, arr_size);
+        int [] arr2 = A;
+        int arr_size = arr2.length;
+        duplicate.printRepeating(arr2, arr_size);
         endTime = System.currentTimeMillis();
         timeElapsed = endTime - startTime;
         System.out.println("\nExecution time in milliseconds: " + timeElapsed);
-        //method no.3
-        int [] arr2 = insert();
-        if (checkForDuplicates(arr2))
-            System.out.println("Duplicate Found");
+        //method no.4
+        int [] arr3 = A;
+        System.out.println("Duplicate " + checkForDuplicates(arr3));
     }
 }
