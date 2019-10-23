@@ -16,7 +16,7 @@ public class ArrayHome {
         String [] Str = new String [n];
         for (int k = 0; k < n; k++) {
             System.out.println("Add " + k + " element");
-            Str[k] = scanner.nextLine();//why S[0] element can't be added from keyboard?
+            Str[k] = String.valueOf(scanner.nextInt());//why S[0] element can't be added from keyboard?
             System.out.println("Added " + k + " element " + Str[k]);
         }
         Array = Str;
@@ -41,7 +41,7 @@ public class ArrayHome {
         for (int i = 0; i < n; i++) {
             str += "  " + S1[i];
             str2 += "A[" + i + "]\t";
-            if (i < n - 1) str += ".  \t";
+            if (i < n - 1) str += ",  \t";
         }
         str = str2 + "\n" + str;
         return str;
@@ -54,7 +54,7 @@ public class ArrayHome {
         for (int i = 0; i < n; i++) {
             str += "  " + S1[i];
             str2 += "A[" + i + "]\t";
-            if (i < n - 1) str += ".  \t";
+            if (i < n - 1) str += ",  \t";
         }
         str = str2 + "\n" + str;
         return str;
@@ -248,10 +248,8 @@ public class ArrayHome {
         System.out.println("First array:  \n " + printArrayAlphabetConstruct(arC11));
         System.out.println("Second array:  \n " + printArrayAlphabetConstruct(arC12));
         System.out.println("Swaping...\n Let's make some magic.\n");
-
         swapArrayConstruct(arC11, arC12);
-
-        //lost method swaping values in Array
+       //lost method swaping values in Array
         System.out.println("---------------------------------\nSwap in Array");
         System.out.println("Add array lenght");
         int k=scanner.nextInt();
@@ -261,5 +259,10 @@ public class ArrayHome {
         String [] swaped = swap(ar6);
         System.out.println("Swaped values ");
         System.out.println(printArrayAlphabet(swaped));
+        //XOR method make it
+        int a = 5; int b = 10;
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
     }
 }
