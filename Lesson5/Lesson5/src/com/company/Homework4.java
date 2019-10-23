@@ -1,6 +1,9 @@
 package com.company;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Homework4 {
 
     public static int [] insert(){
@@ -65,7 +68,7 @@ public class Homework4 {
         return start;
     }
 
-    // Function to print duplicates
+    // Function to print duplicates and find by Math.abs
     void printRepeating(int arr[], int size)
     {
         int i;
@@ -78,6 +81,25 @@ public class Homework4 {
             else
                 System.out.print(Math.abs(arr[i]) + " ");
         }
+    }
+
+    // Generic function to check for duplicates in an array
+    private static <T> boolean checkForDuplicates(T... array)
+    {
+        // create an empty set
+        Set<T> set = new HashSet<T>();
+        // do for every element in the array
+        for (T e : array)
+        {
+            // return true if duplicate is found
+            if (set.contains(e))
+                return true;
+            // insert current element into a set
+            if (e != null)
+                set.add(e);
+        }
+        // no duplicate found
+        return false;
     }
 
     public static void main(String[] args) {
@@ -107,5 +129,9 @@ public class Homework4 {
         endTime = System.currentTimeMillis();
         timeElapsed = endTime - startTime;
         System.out.println("\nExecution time in milliseconds: " + timeElapsed);
+        //method no.3
+        int [] arr2 = insert();
+        if (checkForDuplicates(arr2))
+            System.out.println("Duplicate Found");
     }
 }
